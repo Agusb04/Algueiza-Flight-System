@@ -44,19 +44,19 @@ El sistema funciona mediante comandos por entrada estándar (CLI). A continuaci�
 - **agregar_archivo <archivo.csv>**  
   Carga un archivo CSV con vuelos al sistema. Cada ejecución puede agregar o actualizar vuelos existentes.
 
-- **ver_tablero <K> <asc/desc> <desde> <hasta>**  
+- **ver_tablero** <K> <asc/desc> <desde> <hasta> 
   Muestra hasta K vuelos dentro del rango de fechas indicado, ordenados por fecha de despegue en orden ascendente o descendente.
 
-- **info_vuelo <código_vuelo>**  
+- **info_vuelo** <código_vuelo>  
   Muestra toda la información asociada a un vuelo específico identificado por su código.
 
-- **prioridad_vuelos <K>**  
+- **prioridad_vuelos** <K>
   Muestra los K vuelos con mayor prioridad registrados en el sistema.
 
-- **siguiente_vuelo <origen> <destino> <fecha>**  
+- **siguiente_vuelo** <origen> <destino> <fecha>  
   Devuelve el próximo vuelo directo entre dos aeropuertos a partir de una fecha dada.
 
-- **borrar <desde> <hasta>**  
+- **borrar** <desde> <hasta>
   Elimina todos los vuelos cuya fecha de despegue esté dentro del rango indicado.
 
 📌 Todas las fechas deben tener formato:  
