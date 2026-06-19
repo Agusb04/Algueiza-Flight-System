@@ -6,7 +6,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"sort"
 
 	Heap "algueiza-flight-system/tdas/cola_prioridad"
 	DICCIONARIO "algueiza-flight-system/tdas/diccionario"
@@ -72,7 +71,7 @@ func (sis *sistema) CargarArchivo(ruta string) {
 		for i := range linea {
 			linea[i] = strings.TrimSpace(linea[i])
 		}
-		if !EsFormatoValido(linea) {
+		if !esFormatoValido(linea) {
 			continue
 		}
 		codigo := linea[0]
@@ -140,12 +139,9 @@ func (s *sistema) VerTablero(k int, modo string, desdeStr, hastaStr string) {
 			iter.Siguiente()
 		}
 
-		sort.Slice(vuelos, func(i, j int) bool {
-			if vuelos[i].fecha == vuelos[j].fecha {
-				return vuelos[i].codigo > vuelos[j].codigo
-			}
-			return vuelos[i].fecha > vuelos[j].fecha
-		})
+		for i, j := 0, len(vuelos)-1; i < j; i, j = i+1, j-1 {
+			vuelos[i], vuelos[j] = vuelos[j], vuelos[i]
+		}
 
 		limite := k
 		if len(vuelos) < limite {
@@ -161,12 +157,13 @@ func (s *sistema) VerTablero(k int, modo string, desdeStr, hastaStr string) {
 	funciones_Aux.ImprimirError(CMD_TABLERO)
 }
 
-func (s *sistema) InfoVuelo(codigo string) {
+func (s *sistema) InfoVuelo(codigo string) bool {
 	if !s.vuelosPorCodigo.Pertenece(codigo) {
-		panic("La clave no pertenece al diccionario")
+		return false
 	}
 	vuelo := s.vuelosPorCodigo.Obtener(codigo)
 	s.mostrarDetallesVuelo(&vuelo)
+	return true
 }
 
 func (s *sistema) PrioridadVuelos(k int) {
@@ -353,7 +350,7 @@ func comparacionTiempo(a, b string) int {
 	return 0
 }
 
-func EsFormatoValido(l []string) bool {
+func esFormatoValido(l []string) bool {
 	return len(l) == 10
 }
 

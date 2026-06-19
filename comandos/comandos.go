@@ -36,7 +36,6 @@ func ManejoComandos(sistema interfaz.SistemaVuelos, comando string, argumentos [
 		K, modo, desde, hasta := argumentos[0], argumentos[1], argumentos[2], argumentos[3]
 		cantidad := funciones_Aux.ParseNumeroPositivo(K, comando)
 		if cantidad < 0 {
-			funciones_Aux.ImprimirError(comando)
 			return
 		}
 		if modo != "asc" && modo != "desc" {
@@ -69,7 +68,10 @@ func ManejoComandos(sistema interfaz.SistemaVuelos, comando string, argumentos [
 			return
 		}
 
-		sistema.InfoVuelo(codigo)
+		if !sistema.InfoVuelo(codigo) {
+			funciones_Aux.ImprimirError(comando)
+			return
+		}
 		funciones_Aux.PrintOk()
 
 	case "prioridad_vuelos":

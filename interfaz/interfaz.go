@@ -5,7 +5,7 @@ type SistemaVuelos interface {
 
 	VerTablero(cant int, modo string, fechaDesde, fechaHasta string)
 
-	InfoVuelo(codigo string)
+	InfoVuelo(codigo string) bool
 
 	PrioridadVuelos(cant int)
 

@@ -48,12 +48,14 @@ go build -o algueiza main.go
 ## Ejemplo de ejecucion en CLI
 
 ```bash
-agregar_archivo data/vuelos.csv
+agregar_archivo data/vuelos-algueiza-parte-01.csv
 prioridad_vuelos 5
 ver_tablero 10 asc 2018-10-10T00:00:00 2018-10-10T23:59:59
 ```
 
-## 🧪 Tests de los TDAS
+## 🧪 Tests
 ```bash
 go test ./... -v
 ```
+
+Incluye tests unitarios de las estructuras de datos (TDAs), las funciones auxiliares, el sistema de vuelos, y el dispatch de comandos.
